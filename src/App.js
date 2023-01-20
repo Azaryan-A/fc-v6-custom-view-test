@@ -1,24 +1,39 @@
-import logo from './logo.svg';
-import './App.css';
+import FullCalendar from "@fullcalendar/react";
+import interactionPlugin from "@fullcalendar/interaction";
+import dayGridPlugin from "@fullcalendar/daygrid";
+import timeGridPlugin from "@fullcalendar/timegrid";
+import listPlugin from "@fullcalendar/list";
+import { createPlugin } from "@fullcalendar/core";
+
+const CustomView = () => {
+  return <p>aadasdasdasd</p>;
+};
+
+const customViewsPlugin = createPlugin({
+  views: {
+    custom: {
+      content: CustomView,
+      // content: 'CustomView', // displaying only when content is string
+    },
+  },
+});
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <FullCalendar
+      plugins={[
+        interactionPlugin,
+        dayGridPlugin,
+        timeGridPlugin,
+        listPlugin,
+        customViewsPlugin,
+      ]}
+      headerToolbar={{
+        start: "title",
+        center: "",
+        end: "listWeek, dayGridMonth, timeGridWeek, custom",
+      }}
+    />
   );
 }
 
